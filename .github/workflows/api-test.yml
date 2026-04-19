@@ -1,0 +1,35 @@
+name: API Test Automation
+
+on:
+  push:
+    paths:
+      - 'index.js'
+      - 'collection.json'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install express
+
+      - name: Start API server
+        run: node index.js &
+
+      - name: Wait for API
+        run: sleep 5
+
+      - name: Install Newman
+        run: npm install -g newman
+
+      - name: Run API tests
+        run: newman run collection.json
