@@ -1,0 +1,38 @@
+{
+	"info": {
+		"_postman_id": "3d18898e-8794-4ac5-91c7-b25bb0a1128c",
+		"name": "API Test Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "23242514"
+	},
+	"item": [
+		{
+			"name": "Test API",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has name\", function () {\r",
+							"    var json = pm.response.json();\r",
+							"    pm.expect(json.name).to.exist;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/user"
+			},
+			"response": []
+		}
+	]
+}
